@@ -1,10 +1,10 @@
 <div class="countdown-timer">
-    <p id="demo"></p>
+    <p id="countdown-date"></p>
 </div>
 
 <script>
+    <?php if ($block->getCountdownTime()): ?>
     var countDownDate = new Date("<?php echo $block->getCountdownTime(); ?>").getTime();
-
     var x = setInterval(function() {
         var now = new Date().getTime();
         var distance = countDownDate - now;
@@ -14,12 +14,15 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        document.getElementById("countdown-date").innerHTML = days + "d " + hours + "h "
         + minutes + "m " + seconds + "s ";
 
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById("countdown-date").innerHTML = "EXPIRED";
         }
     }, 1000);
+    <?php else: ?>
+    document.getElementById("countdown-date").innerHTML = "Release date not set";
+    <?php endif; ?>
 </script>
