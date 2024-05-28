@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Hgati_CountDownTimer::css/countdown.css"/>
+    </head>
     <body>
-        <referenceContainer name="content">
-            <block class="Hgati\CountDownTimer\Block\Timer" name="product.countdown.timer" after="product.info.overview" template="Hgati_CountDownTimer::timer.phtml"/>
+        <referenceContainer name="product.info.main">
+            <block class="Hgati\CountDownTimer\Block\Timer" name="product.countdown.timer" before="product.info" template="Hgati_CountDownTimer::timer.phtml"/>
         </referenceContainer>
     </body>
 </page>
