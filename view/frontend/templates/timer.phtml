@@ -19,6 +19,7 @@
     function formatTime(unit) { return unit.toString().padStart(2, '0'); }
     
     (function () {
+        //const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
         const countDown = targetDate.getTime(),
             x = setInterval(function() {    
