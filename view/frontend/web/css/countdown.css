@@ -1,0 +1,39 @@
+.cdt-container {
+	color: #333;
+	margin: 0 auto;
+	text-align: center;
+	background-color: gold;
+}
+  
+.cdt-container ul {
+	margin-bottom: 2rem !important;
+}
+
+/* 제품페이지 간단설명 블럭 밑에 마진 */
+.product.attribute.overview {
+	margin-bottom: 2rem !important;
+}
+
+.cdt-container li {
+	display: inline-block;
+	font-size: 1em;
+	list-style-type: none;
+	padding: .5em;
+	text-transform: uppercase;
+}
+
+.cdt-container li span {
+	display: block;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+@media all and (max-width: 768px) {
+	.cdt-container li {
+		font-size: calc(1.125rem * var(--smaller));
+	}
+
+	.cdt-container li span {
+		font-size: calc(4.375rem * var(--smaller));
+	}
+}
