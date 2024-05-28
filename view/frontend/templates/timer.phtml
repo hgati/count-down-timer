@@ -13,6 +13,7 @@
     <script>
     var datestring = "<?php echo $strdate?>";
     var target_date = new Date(datestring);
+    target_date = new Date(target_date + ' UTC+09:00');
 
     function formatTime(unit) { return unit.toString().padStart(2, '0'); }
     
