@@ -1,31 +1,41 @@
 <?php
 namespace Hgati\CountDownTimer\Block;
 
+use Magento\Catalog\Block\Product\View;
+use Magento\Catalog\Helper\Data as CatalogHelper;
 use Magento\Framework\View\Element\Template;
-use Magento\Catalog\Model\ProductFactory;
 
 class Timer extends Template
 {
-    protected $productFactory;
+    protected $_productView;
+    protected $_catalogHelper;
 
     public function __construct(
         Template\Context $context,
-        ProductFactory $productFactory,
+        View $productView,
+        CatalogHelper $catalogHelper,
         array $data = []
     ) {
-        $this->productFactory = $productFactory;
+        $this->_productView = $productView;
+        $this->_catalogHelper = $catalogHelper;
         parent::__construct($context, $data);
+    }
+
+    public function getCurrentProduct()
+    {
+        return $this->_productView->getProduct();
     }
 
     public function getCountdownTime()
     {
-        $product = $this->productFactory->create()->load($this->_request->getParam('id'));
-        $releaseDate = $product->getData('amasty_preorder_release_date');
+        $product = $this->getCurrentProduct();
+        $releaseDate = $product->getResource()->getAttribute('amasty_preorder_release_date')->getFrontend()->getValue($product);
+
         if ($releaseDate) {
-            $releaseDateTimestamp = strtotime($releaseDate);
-            $releaseDateTimestamp = strtotime(date('Y-m-d 23:59:59', $releaseDateTimestamp));
-            $releaseDate = date('Y-m-d H:i:s', $releaseDateTimestamp);
-            return $releaseDate;
+            $releaseDateTime = new \DateTime($releaseDate);
+            //$releaseDateTime->setTimezone(new \DateTimeZone('UTC'));
+            $releaseDateTime->setTime(0, 0, 0); // 23:59:59로 설정
+            return $releaseDateTime->format('Y-m-d H:i:s');
         } else {
             return null; // Release date not set
         }
