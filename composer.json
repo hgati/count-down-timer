@@ -1,0 +1,17 @@
+{
+    "name": "hgati/count-down-timer",
+    "description": "A Magento 2 module to display a countdown timer on the product page.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Hgati\\CountDownTimer\\": ""
+        }
+    }
+}
